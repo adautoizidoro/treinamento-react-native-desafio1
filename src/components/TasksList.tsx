@@ -32,8 +32,7 @@ export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps)
               <TouchableOpacity 
                 testID={`button-${index}`}
                 activeOpacity={0.7}
-                style={styles.
-                }
+                style={styles.taskButton}
                 onPress={() => toggleTaskDone (item.id)}
 
               >
