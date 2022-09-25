@@ -21,35 +21,36 @@ interface TasksListProps {
 export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps) {
   return (
     <FlatList
-      // data={tasks}
-      keyExtractor={item => String(item.id)}
+      data={tasks}
+      keyExtractor={item => item.id}
       contentContainerStyle={{ paddingBottom: 24 }}
       showsVerticalScrollIndicator={false}
       renderItem={({ item, index }) => {
         return (
           <ItemWrapper index={index}>
             <View>
-              <TouchableOpacity
+              <TouchableOpacity 
                 testID={`button-${index}`}
                 activeOpacity={0.7}
-                style={styles.taskButton}
-                //TODO - use onPress (toggle task) prop
+                style={styles.
+                }
+                onPress={() => toggleTaskDone (item.id)}
+
               >
                 <View 
                   testID={`marker-${index}`}
-                  //TODO - use style prop 
                 >
-                  { item.done && (
-                    <Icon 
+                 
+                    <Icon   style={item.done? styles.taskMarkerDone:styles.taskMarker}  //TODO - use style prop
                       name="check"
                       size={12}
                       color="#FFF"
                     />
-                  )}
+                 
                 </View>
 
                 <Text 
-                  //TODO - use style prop
+                style={item.done? styles.taskTextDone:styles.taskText}  //TODO - use style prop
                 >
                   {item.title}
                 </Text>
@@ -59,7 +60,7 @@ export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps)
             <TouchableOpacity
               testID={`trash-${index}`}
               style={{ paddingHorizontal: 24 }}
-              //TODO - use onPress (remove task) prop
+              onPress={() => removeTask (item.id)}
             >
               <Image source={trashIcon} />
             </TouchableOpacity>
